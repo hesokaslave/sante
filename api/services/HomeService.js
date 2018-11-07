@@ -80,11 +80,26 @@ module.exports = {
                                 }
                             },function(err,response,bodyActes){
                                 if(err) return done(err,null)
-                                return done(null,{
-                                    bodySituation : bodySituation,
-                                    bodySalaire : bodySalaire,
-                                    bodyActes : bodyActes
-                                });
+                                request({
+                                    url:"http://application.sante.gov.ma/situation/Default.aspx",
+                                    method:"POST",
+                                    form : {
+                                        __EVENTTARGET: "Menu1",
+                                        __EVENTARGUMENT: "2",
+                                        __VIEWSTATE : viewstat3,
+                                        __EVENTVALIDATION : valid3,
+                                        __VIEWSTATEGENERATOR : gen3,
+                                        HidePPR: username
+                                    }
+                                },function(err,response,bodyFamille){
+                                    if(err) return done(err,null)
+                                    return done(null,{
+                                        bodySituation : bodySituation,
+                                        bodySalaire : bodySalaire,
+                                        bodyActes : bodyActes,
+                                        bodyFamille : bodyFamille
+                                    });
+                                }); 
                             }); 
                         }); 
                     });

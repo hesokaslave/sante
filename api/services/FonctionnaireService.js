@@ -1,7 +1,6 @@
 module.exports = {
     getOne : function(html, done){
         var $ = require('cheerio').load(html);
-
         var result = {
             id : $('#lblppr').text(),
             nom : $('#lblnom').text(),
